@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#061934">
+  <title>AZ-900 World Cup — Certification Quest</title>
+  <style>
+    :root{--navy:#061934;--navy2:#0b2d58;--blue:#0078d4;--cyan:#42d4f4;--gold:#ffcb45;--green:#3ddc97;--red:#ff6b6b;--paper:#f7fbff;--ink:#10233e;--muted:#5d6f84;--card:#fff;--line:#d8e7f4;--shadow:0 18px 50px rgba(1,18,40,.22);font-size:16px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 20% 0,#164c7f 0,transparent 34%),linear-gradient(145deg,var(--navy),#031020 70%);color:#fff;min-height:100vh}
+    button,input{font:inherit}button{cursor:pointer}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .skip{position:fixed;left:1rem;top:-5rem;z-index:99;background:#fff;color:#000;padding:.7rem 1rem;border-radius:.5rem}.skip:focus{top:1rem}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(4,22,45,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.13);padding:.7rem clamp(1rem,3vw,2.4rem);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:850;letter-spacing:.02em}.ball{width:2.2rem;height:2.2rem;border-radius:50%;display:grid;place-items:center;background:conic-gradient(from 30deg,#fff,#c5ecff,#fff,#9cd9ff,#fff);color:#073763;box-shadow:0 0 0 4px rgba(66,212,244,.16)}
+    .tools{display:flex;gap:.45rem;flex-wrap:wrap}.iconbtn{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:.5rem .75rem}.iconbtn:hover,.iconbtn:focus-visible{background:#fff;color:var(--navy);outline:3px solid var(--gold);outline-offset:2px}
+    .shell{width:min(1180px,94vw);margin:auto;padding:2rem 0 4rem}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:2rem;align-items:center;padding:2rem 0 1.3rem}
+    .eyebrow{display:inline-flex;gap:.5rem;align-items:center;color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:.13em;font-size:.78rem}.hero h1{font-size:clamp(2.4rem,6vw,5.4rem);line-height:.92;margin:.5rem 0 1rem;letter-spacing:-.055em}.hero h1 span{color:var(--gold);display:block}.lede{font-size:clamp(1rem,2vw,1.2rem);max-width:690px;color:#d8ebff;line-height:1.65}
+    .trophy-wrap{position:relative;min-height:250px;display:grid;place-items:center}.trophy{font-size:8rem;filter:drop-shadow(0 18px 18px rgba(0,0,0,.32));animation:float 3.4s ease-in-out infinite}.orbit{position:absolute;width:250px;height:250px;border:1px dashed rgba(66,212,244,.5);border-radius:50%;animation:spin 14s linear infinite}.orb{position:absolute;left:108px;top:-11px;font-size:1.35rem}
+    @keyframes float{50%{transform:translateY(-12px) rotate(2deg)}}@keyframes spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    .panel{background:var(--paper);color:var(--ink);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.start{padding:clamp(1.2rem,4vw,2.4rem)}.start h2{margin:.1rem 0 .6rem;font-size:1.75rem}.meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:1.3rem 0}.meta{background:#eaf6ff;border:1px solid #cce9ff;padding:1rem;border-radius:14px}.meta b{display:block;font-size:1.35rem;color:#065da8}.meta span{color:var(--muted);font-size:.86rem}
+    .week-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:1.1rem 0}.week{border:1px solid var(--line);border-radius:14px;padding:.9rem;background:#fff}.week strong{color:#0067b8}.week small{display:block;color:var(--muted);line-height:1.45;margin-top:.25rem}
+    .options-row{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin:1.2rem 0}.toggle{display:flex;gap:.55rem;align-items:center;background:#edf6fb;padding:.65rem .8rem;border-radius:12px}.toggle input{width:1.15rem;height:1.15rem}
+    .primary{border:0;border-radius:12px;background:linear-gradient(135deg,#0078d4,#005a9e);color:#fff;padding:.9rem 1.25rem;font-weight:850;box-shadow:0 8px 20px rgba(0,120,212,.25)}.primary:hover,.primary:focus-visible{transform:translateY(-2px);outline:3px solid var(--gold);outline-offset:3px}.secondary{border:1px solid #aac8dd;background:#fff;color:var(--ink);border-radius:12px;padding:.75rem 1rem;font-weight:750}
+    #game{display:none}.stadium{display:grid;grid-template-columns:230px 1fr;gap:1rem;align-items:start}.sidebar{position:sticky;top:72px;background:rgba(8,35,68,.92);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:1rem}.scoreboard{text-align:center}.score-num{font-size:2.3rem;font-weight:900;color:var(--gold)}.score-label{font-size:.78rem;color:#bcd6ed;text-transform:uppercase;letter-spacing:.12em}.progress-shell{height:10px;background:#d5e5f2;border-radius:99px;overflow:hidden;margin:.8rem 0}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--green));transition:width .45s ease}
+    .pitch{height:90px;border-radius:12px;background:linear-gradient(90deg,#187a4c 50%,#1d8654 50%);background-size:40px 100%;position:relative;overflow:hidden;border:2px solid rgba(255,255,255,.65);margin:1rem 0}.pitch:after{content:"";position:absolute;width:50px;height:50px;border:2px solid rgba(255,255,255,.7);border-radius:50%;left:calc(50% - 25px);top:18px}.player{position:absolute;left:6%;top:28px;font-size:1.7rem;transition:left .55s cubic-bezier(.2,.8,.2,1);z-index:2}
+    .navgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:.3rem}.qdot{aspect-ratio:1;border-radius:6px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font-size:.7rem}.qdot.current{outline:2px solid var(--gold)}.qdot.correct{background:#138658}.qdot.wrong{background:#a93232}.qdot.skipped{background:#7a6632}
+    .question-card{padding:clamp(1rem,4vw,2.3rem);min-height:610px;position:relative}.question-top{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.tag{display:inline-flex;padding:.35rem .65rem;border-radius:999px;background:#dff3ff;color:#005a9e;font-weight:800;font-size:.78rem}.type{color:var(--muted);font-size:.86rem;font-weight:700}.question-card h2{font-size:clamp(1.35rem,3vw,2rem);line-height:1.3;margin:1rem 0}.scenario{background:#f0f7fc;border-left:5px solid var(--blue);padding:1rem;border-radius:0 12px 12px 0;color:#294864;margin:.8rem 0 1.2rem;line-height:1.55}
+    .answers{display:grid;gap:.7rem}.answer{width:100%;text-align:left;border:2px solid #d7e4ee;background:#fff;color:var(--ink);border-radius:13px;padding:1rem;display:flex;gap:.8rem;align-items:flex-start;line-height:1.4}.answer:hover,.answer:focus-visible{border-color:var(--blue);background:#f1f9ff;outline:3px solid rgba(0,120,212,.18)}.answer.selected{border-color:#0067b8;background:#e1f2ff}.answer.correct{border-color:#138658;background:#e4f8ef}.answer.incorrect{border-color:#b92d2d;background:#fff0f0}.letter{flex:0 0 1.8rem;height:1.8rem;border-radius:50%;display:grid;place-items:center;background:#e8f1f7;font-weight:900}
+    .feedback{display:none;margin-top:1rem;padding:1rem 1.1rem;border-radius:13px;line-height:1.55}.feedback.good{display:block;background:#e4f8ef;border-left:5px solid #138658}.feedback.bad{display:block;background:#fff0f0;border-left:5px solid #bd3030}.feedback b{display:block;margin-bottom:.25rem}.controls{display:flex;justify-content:space-between;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem}.flash{perspective:1000px;min-height:275px}.flash-inner{position:relative;min-height:275px;transition:transform .65s;transform-style:preserve-3d}.flash.flipped .flash-inner{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;padding:2rem;border:2px solid #cfe4f1;background:linear-gradient(145deg,#fff,#eaf7ff)}.back{transform:rotateY(180deg);background:linear-gradient(145deg,#e7f8f0,#fff)}.face strong{font-size:1.5rem}.flash-actions{display:flex;justify-content:center;gap:.7rem;margin-top:1rem}
+    .results{display:none;padding:clamp(1.2rem,5vw,3rem);text-align:center}.results h2{font-size:clamp(2rem,5vw,3.6rem);margin:.4rem}.final-score{font-size:4rem;font-weight:950;color:#0067b8}.medal{font-size:6rem}.breakdown{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;margin:1.5rem 0}.break{background:#edf6fb;border-radius:12px;padding:.8rem}.break b{display:block;color:#0067b8}.review-list{text-align:left;display:grid;gap:.7rem;margin:1.4rem auto;max-width:820px}.review-item{border:1px solid var(--line);border-radius:12px;padding:.9rem;background:#fff}.review-item summary{cursor:pointer;font-weight:800}.review-item p{color:var(--muted);line-height:1.5}.certificate{border:2px dashed #92b6cf;padding:1rem;border-radius:14px;background:#f8fcff;margin:1rem auto;max-width:700px}.source-note{font-size:.8rem;color:var(--muted);line-height:1.5;margin-top:1.2rem}
+    .high-contrast{--paper:#fff;--ink:#000;--muted:#222;--line:#111}.high-contrast body{background:#000}.large-text{font-size:19px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}.trophy-wrap{display:none}.stadium{grid-template-columns:1fr}.sidebar{position:static}.navgrid{grid-template-columns:repeat(10,1fr)}.meta-grid{grid-template-columns:repeat(2,1fr)}.week-grid{grid-template-columns:repeat(2,1fr)}.breakdown{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.shell{width:96vw}.topbar{align-items:flex-start}.brand span:last-child{display:none}.week-grid{grid-template-columns:1fr}.question-card{border-radius:16px}.navgrid{grid-template-columns:repeat(10,1fr)}.answer{padding:.8rem}.hero h1{font-size:2.55rem}}
+    @media print{body{background:#fff;color:#000}.topbar,.hero,.sidebar,.controls,.flash-actions,.source-note{display:none!important}.panel{box-shadow:none}.results{display:block!important}.shell{width:100%;padding:0}.certificate{border:3px double #222}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to game content</a>
+  <header class="topbar">
+    <div class="brand"><span class="ball" aria-hidden="true">⚽</span><span>AZ-900 WORLD CUP</span></div>
+    <div class="tools" aria-label="Accessibility controls">
+      <button class="iconbtn" id="contrastBtn" aria-pressed="false">◐ Contrast</button>
+      <button class="iconbtn" id="textBtn" aria-pressed="false">A+ Text</button>
+      <button class="iconbtn" id="soundBtn" aria-pressed="true">🔊 Sound</button>
+    </div>
+  </header>
+  <main id="main" class="shell">
+    <section class="hero" aria-labelledby="title">
+      <div>
+        <div class="eyebrow">Microsoft Azure Fundamentals · Weeks 1–6</div>
+        <h1 id="title">Certification Quest <span>World Cup</span></h1>
+        <p class="lede">Advance your cloud team through 60 one-point challenges. Master the concepts, inspect every explanation, and lift the AZ-900 trophy.</p>
+      </div>
+      <div class="trophy-wrap" aria-hidden="true"><div class="orbit"><span class="orb">☁️</span></div><div class="trophy">🏆</div></div>
+    </section>
+
+    <section id="start" class="panel start" aria-labelledby="briefing">
+      <h2 id="briefing">Pre-match briefing</h2>
+      <p>Every item is worth one point. Incorrect answers reveal corrective feedback and the right answer. Retake the full quest as often as needed; best score is saved on this device.</p>
+      <div class="meta-grid">
+        <div class="meta"><b>60</b><span>questions / points</span></div><div class="meta"><b>6</b><span>weekly zones</span></div><div class="meta"><b>5</b><span>activity styles</span></div><div class="meta"><b id="bestScore">0</b><span>best score</span></div>
+      </div>
+      <div class="week-grid" aria-label="Content coverage">
+        <div class="week"><strong>Week 1</strong><small>Cloud concepts, models, shared responsibility, consumption</small></div>
+        <div class="week"><strong>Week 2</strong><small>Availability, scalability, reliability, governance, manageability</small></div>
+        <div class="week"><strong>Week 3</strong><small>IaaS, PaaS, SaaS and Azure Functions</small></div>
+        <div class="week"><strong>Week 4</strong><small>Regions, zones, resource hierarchy, Entra ID and RBAC</small></div>
+        <div class="week"><strong>Week 5</strong><small>Compute, networking, hosting, secure file sharing</small></div>
+        <div class="week"><strong>Week 6</strong><small>Review and cost guardrails across Weeks 1–5</small></div>
+      </div>
+      <div class="options-row">
+        <label class="toggle"><input id="shuffle" type="checkbox" checked> Shuffle questions</label>
+        <label class="toggle"><input id="practice" type="checkbox" checked> Practice mode: retry before advancing</label>
+      </div>
+      <button class="primary" id="startBtn">Enter the stadium</button>
+      <p class="source-note">Instructor-aligned original questions based on the CNSE M111 Fall 2026 syllabus, Microsoft Learn modules assigned in Weeks 1–6, and AZ-900 objective concepts. No live Azure account is required.</p>
+    </section>
+
+    <section id="game" aria-label="Certification quest">
+      <div class="stadium">
+        <aside class="sidebar" aria-label="Score and progress">
+          <div class="scoreboard"><div class="score-num"><span id="score">0</span>/60</div><div class="score-label">Match score</div></div>
+          <div class="progress-shell" role="progressbar" aria-label="Quest progress" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0"><div class="progress-bar" id="progress"></div></div>
+          <div id="progressText">Question 1 of 60</div>
+          <div class="pitch" aria-hidden="true"><span class="player" id="player">🏃‍♂️⚽</span></div>
+          <div class="navgrid" id="navgrid" aria-label="Question navigator"></div>
+        </aside>
+        <article class="panel question-card" id="questionCard" tabindex="-1">
+          <div class="question-top"><span class="tag" id="weekTag"></span><span class="type" id="typeTag"></span></div>
+          <h2 id="questionText"></h2>
+          <div id="scenario" class="scenario"></div>
+          <div id="answerArea"></div>
+          <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+          <div class="controls"><button class="secondary" id="skipBtn">Skip for now</button><button class="primary" id="submitBtn">Lock answer</button><button class="primary" id="nextBtn" hidden>Next challenge</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="results" class="panel results" aria-labelledby="resultTitle">
+      <div class="medal" id="medal" aria-hidden="true">🏆</div><h2 id="resultTitle">Full-time result</h2>
+      <div class="final-score"><span id="finalScore">0</span>/60</div><p id="resultMessage"></p>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="certificate"><strong>AZ-900 World Cup — Weeks 1–6</strong><p id="certificateText"></p><small id="stamp"></small></div>
+      <div><button class="primary" id="retakeBtn">Retake quest</button> <button class="secondary" onclick="window.print()">Print / save score</button></div>
+      <div class="review-list" id="reviewList"></div>
+    </section>
+  </main>
+  <div class="sr-only" id="announcer" aria-live="assertive"></div>
+  <script>
+  const Q=[
+  {w:1,t:"single",q:"Which statement best defines cloud computing?",a:["Delivery of computing services over the internet using on-demand resources","A local network with no internet access","A licensing model limited to desktop software","A method for permanently purchasing physical servers"],c:[0],why:"Cloud computing delivers services such as compute, storage, networking, and applications on demand over the internet. Buying and operating only local hardware is traditional on-premises computing.",s:"Concept"},
+  {w:1,t:"tf",q:"In a consumption-based cloud model, customers generally pay for the resources they use.",a:["True","False"],c:[0],why:"True. Consumption-based pricing shifts spending toward measured usage instead of requiring the full up-front purchase of infrastructure.",s:"Cost"},
+  {w:1,t:"single",q:"Which cloud model uses infrastructure dedicated to one organization?",a:["Public cloud","Private cloud","Hybrid cloud","Community internet"],c:[1],why:"A private cloud is dedicated to a single organization. A public cloud is operated by a provider for many customers; hybrid connects private and public environments.",s:"Cloud model"},
+  {w:1,t:"single",q:"A company must keep sensitive legacy systems on-premises but wants cloud scale for a customer portal. Which model fits best?",a:["Public only","Private only","Hybrid cloud","SaaS only"],c:[2],why:"Hybrid cloud combines on-premises or private-cloud resources with public-cloud services, supporting placement based on security, technical, or regulatory needs.",s:"Scenario"},
+  {w:1,t:"multi",q:"Select all characteristics commonly associated with a public cloud.",a:["Resources are owned and operated by a cloud provider","Services are available to multiple customers","Every customer must own the datacenter hardware","Resources can be provisioned on demand"],c:[0,1,3],why:"In a public cloud, the provider owns and operates shared infrastructure and customers provision services on demand. Customers do not own the provider's datacenter equipment.",s:"Multiple select"},
+  {w:1,t:"single",q:"Under the shared responsibility model, which task remains the customer's responsibility in every cloud service model?",a:["Physical datacenter security","Replacing failed provider disks","Protecting identities, accounts, and data access","Maintaining the cloud provider's backbone"],c:[2],why:"The customer always remains responsible for its data, identities, accounts, and access decisions. The provider handles physical facilities and core infrastructure.",s:"Security"},
+  {w:1,t:"single",q:"As you move from IaaS toward SaaS, what happens to the cloud provider's responsibility?",a:["It decreases","It increases","It disappears","It remains identical for every layer"],c:[1],why:"The provider manages progressively more of the stack from IaaS to PaaS to SaaS. The customer still owns data, identity, and access decisions.",s:"Shared responsibility"},
+  {w:1,t:"tf",q:"Capital expenditure is typically associated with buying datacenter equipment up front.",a:["True","False"],c:[0],why:"True. Capital expenditure (CapEx) is an up-front investment in assets. Cloud consumption often emphasizes operating expenditure (OpEx), where spending tracks use.",s:"Cost"},
+  {w:1,t:"single",q:"Which example is an operating expenditure?",a:["Buying a server for five years","Constructing a datacenter","Paying a monthly Azure usage bill","Purchasing land for a server room"],c:[2],why:"A monthly charge based on service consumption is an operating expense. Hardware and facility purchases are capital expenses.",s:"Cost"},
+  {w:1,t:"flash",q:"Flash card: What does elasticity mean in cloud computing?",a:["Reveal"],c:[0],why:"Elasticity is the ability to automatically or rapidly add resources when demand rises and remove them when demand falls.",s:"Flash card"},
+  {w:2,t:"single",q:"Which cloud benefit focuses on keeping a service available despite component failures?",a:["High availability","Economies of scale","Capital expenditure","Data sovereignty"],c:[0],why:"High availability uses design and service features to reduce downtime and keep workloads accessible when failures occur.",s:"Reliability"},
+  {w:2,t:"single",q:"A ticketing site adds instances during a concert sale and removes them afterward. Which benefit is demonstrated?",a:["Governance","Elasticity","Sovereignty","CapEx"],c:[1],why:"Elasticity matches resources to changing demand, including scaling out and later scaling in.",s:"Scenario"},
+  {w:2,t:"single",q:"What is scalability?",a:["Ability to increase or decrease resources to meet demand","Guarantee that every workload is free","Requirement to use only one region","Replacement of all security controls"],c:[0],why:"Scalability is the ability to adjust capacity. Vertical scaling changes the power of a resource; horizontal scaling changes the number of resources.",s:"Scale"},
+  {w:2,t:"multi",q:"Which two actions are examples of scaling?",a:["Adding more virtual machines","Increasing a VM's CPU and memory","Applying a resource tag","Resetting a user's password"],c:[0,1],why:"Adding instances is horizontal scaling; increasing an instance's power is vertical scaling. Tags and password changes do not change workload capacity.",s:"Multiple select"},
+  {w:2,t:"single",q:"Which term describes the ability to recover from failures and continue functioning?",a:["Reliability","Latency","Capitalization","Metering"],c:[0],why:"Reliability describes a system's ability to recover from failures and continue operating. Redundancy and distributed design support it.",s:"Reliability"},
+  {w:2,t:"tf",q:"Predictability in the cloud can apply to both performance and cost.",a:["True","False"],c:[0],why:"True. Autoscaling and load balancing can improve performance predictability, while pricing tools, budgets, and analysis improve cost predictability.",s:"Predictability"},
+  {w:2,t:"single",q:"Which feature best supports governance by organizing resources with descriptive metadata?",a:["Tags","Availability Zones","Containers","Virtual desktops"],c:[0],why:"Tags attach key-value metadata such as Department=Cybersecurity or Environment=Test. They support organization, reporting, policy, and cost analysis.",s:"Governance"},
+  {w:2,t:"single",q:"What is the purpose of a resource lock?",a:["Encrypt traffic between regions","Prevent accidental deletion or modification","Assign a user's job title","Automatically lower every bill"],c:[1],why:"Resource locks help protect important resources from accidental deletion or change. They do not replace identity, RBAC, encryption, or backup.",s:"Lab connection"},
+  {w:2,t:"multi",q:"Select all cloud manageability approaches represented in Azure.",a:["Web portal","Command-line tools","PowerShell","APIs and templates","Only physical console access"],c:[0,1,2,3],why:"Azure resources can be managed through a portal, CLI, PowerShell, APIs, and declarative templates. Physical console access is not the standard cloud management model.",s:"Manageability"},
+  {w:2,t:"flash",q:"Flash card: Distinguish high availability from scalability.",a:["Reveal"],c:[0],why:"High availability keeps a service accessible during failures. Scalability changes resource capacity to meet demand. A design can require both.",s:"Flash card"},
+  {w:3,t:"single",q:"Which service model gives the customer the most control over the operating system?",a:["IaaS","PaaS","SaaS","Serverless SaaS"],c:[0],why:"Infrastructure as a Service provides virtualized infrastructure while the customer manages the operating system, applications, and much of the configuration.",s:"Service model"},
+  {w:3,t:"single",q:"A development team wants to deploy code without maintaining operating systems. Which model is the best fit?",a:["IaaS","PaaS","Colocation","Private hardware"],c:[1],why:"Platform as a Service provides a managed application platform so developers focus on code and data instead of operating-system maintenance.",s:"Scenario"},
+  {w:3,t:"single",q:"Microsoft 365 is best classified as which cloud service type?",a:["IaaS","PaaS","SaaS","On-premises only"],c:[2],why:"Software as a Service delivers a complete application managed by the provider and consumed by end users.",s:"Service model"},
+  {w:3,t:"multi",q:"In an IaaS virtual machine, which items are typically managed by the customer?",a:["Guest operating system","Applications","Data","Physical datacenter building"],c:[0,1,2],why:"The customer manages the guest OS, applications, and data. The cloud provider manages the physical datacenter, hosts, and underlying hardware.",s:"Multiple select"},
+  {w:3,t:"tf",q:"With SaaS, the customer is still responsible for appropriate user access and data handling.",a:["True","False"],c:[0],why:"True. SaaS reduces infrastructure and application-management responsibility, but the customer still controls users, access, and its data.",s:"Security"},
+  {w:3,t:"single",q:"Which Azure service runs event-driven code without requiring you to manage servers?",a:["Azure Functions","Azure Virtual Desktop","Azure DNS","Azure VPN Gateway"],c:[0],why:"Azure Functions is a serverless, event-driven compute service. You provide function code and configuration while Azure manages the supporting infrastructure.",s:"Functions"},
+  {w:3,t:"single",q:"A new image uploaded to storage starts code that creates a thumbnail. What started the function?",a:["A trigger","A subscription owner","A resource lock","A region pair"],c:[0],why:"A trigger is the event that invokes a function. Storage events, HTTP requests, timers, and messages are common triggers.",s:"Functions"},
+  {w:3,t:"single",q:"Which statement about serverless computing is accurate?",a:["No servers exist anywhere","The provider manages the servers and scaling behind the service","The customer must patch every host","Serverless services cannot respond to events"],c:[1],why:"Servers still exist, but the provider manages them. Customers focus on code and configuration, often with automatic scaling and consumption-based billing.",s:"Serverless"},
+  {w:3,t:"single",q:"Which service model normally requires the least customer administration?",a:["IaaS","PaaS","SaaS","On-premises"],c:[2],why:"SaaS places the largest portion of the technology stack under provider management. Customer responsibility is reduced, not eliminated.",s:"Service model"},
+  {w:3,t:"flash",q:"Flash card: Expand IaaS, PaaS, and SaaS.",a:["Reveal"],c:[0],why:"Infrastructure as a Service; Platform as a Service; Software as a Service.",s:"Flash card"},
+  {w:4,t:"single",q:"What is an Azure region?",a:["A geographical area containing one or more datacenters","A single rack in a customer office","A user group in Microsoft Entra ID","A pricing calculator"],c:[0],why:"An Azure region is a geographic area containing one or more nearby datacenters connected through a low-latency network.",s:"Architecture"},
+  {w:4,t:"single",q:"What is an Availability Zone?",a:["A separate physical location within an Azure region","A billing boundary above a management group","A type of resource tag","A software license"],c:[0],why:"Availability Zones are physically separate locations within a region, with independent power, cooling, and networking to reduce correlated failures.",s:"Architecture"},
+  {w:4,t:"single",q:"Why deploy redundant resources across Availability Zones?",a:["To protect against a datacenter-level failure within a region","To eliminate all networking costs","To convert SaaS into IaaS","To bypass identity controls"],c:[0],why:"Zonal redundancy improves resiliency against failures affecting one physical zone. It does not remove cost, networking, or security responsibilities.",s:"Scenario"},
+  {w:4,t:"tf",q:"An Azure resource can belong to more than one resource group at the same time.",a:["True","False"],c:[1],why:"False. Each resource belongs to one resource group at a time, although a resource can interact with resources in other groups.",s:"Resource hierarchy"},
+  {w:4,t:"single",q:"Which order correctly moves from broadest governance scope to individual resource?",a:["Management group → Subscription → Resource group → Resource","Resource → Region → Tenant → Tag","Subscription → Management group → Resource → Zone","Resource group → Management group → Subscription → Resource"],c:[0],why:"Management groups can contain subscriptions; subscriptions contain resource groups; resource groups contain resources.",s:"Hierarchy"},
+  {w:4,t:"single",q:"What is a primary purpose of an Azure subscription?",a:["Provide a billing and access-control boundary","Represent one physical datacenter","Store only user passwords","Replace all resource groups"],c:[0],why:"A subscription is a logical boundary for billing, access, quotas, and resource organization.",s:"Subscription"},
+  {w:4,t:"multi",q:"Which statements about resource groups are correct?",a:["They are logical containers for Azure resources","A resource group can contain resources from different regions","Permissions can be assigned at the resource-group scope","Deleting a resource group can delete resources inside it"],c:[0,1,2,3],why:"All four are correct. Resource groups organize lifecycle and access; their resources may span regions, and group deletion is consequential.",s:"Multiple select"},
+  {w:4,t:"single",q:"Microsoft Entra ID primarily provides which capability?",a:["Identity and access management","Physical disk replacement","Public DNS hosting only","Container image compilation"],c:[0],why:"Microsoft Entra ID is Azure's cloud identity and access management service for users, groups, applications, authentication, and authorization scenarios.",s:"Identity"},
+  {w:4,t:"single",q:"What does Azure role-based access control (RBAC) determine?",a:["Who can do what at which scope","Which region has the coolest climate","How much memory a laptop contains","When a provider replaces physical disks"],c:[0],why:"Azure RBAC assigns roles to security principals at a scope, defining who has permission to perform specific actions on resources.",s:"RBAC"},
+  {w:4,t:"flash",q:"Flash card: Region, Availability Zone, and datacenter—how do they relate?",a:["Reveal"],c:[0],why:"A datacenter is a physical facility. An Availability Zone is a physically separate location made of one or more datacenters within a region. A region is the larger geographic area.",s:"Flash card"},
+  {w:5,t:"single",q:"Which Azure compute option provides the greatest operating-system control?",a:["Azure virtual machines","Azure Functions","Azure App Service","Software as a Service"],c:[0],why:"Azure VMs provide control of the guest OS and installed software, with the corresponding responsibility to configure, patch, and secure them.",s:"Compute"},
+  {w:5,t:"single",q:"Which feature manages a group of identical load-balanced VMs and can automatically change instance count?",a:["Virtual Machine Scale Sets","Resource locks","Azure Files snapshots only","Management groups"],c:[0],why:"Virtual Machine Scale Sets create and manage groups of load-balanced VMs and support automatic scaling.",s:"Compute"},
+  {w:5,t:"single",q:"A team needs a managed web-hosting platform for an HTTP application. Which service is designed for this?",a:["Azure App Service","Azure DNS only","Azure Virtual Desktop","Management groups"],c:[0],why:"Azure App Service is a managed platform for web applications and APIs. It reduces infrastructure administration compared with VMs.",s:"Hosting"},
+  {w:5,t:"multi",q:"Select the Azure compute choices covered in the Week 5 concepts.",a:["Virtual machines","Containers","Azure Functions","Azure App Service","Resource tags"],c:[0,1,2,3],why:"VMs, containers, Functions, and App Service are compute or application-hosting choices. Tags are metadata used for organization and governance.",s:"Multiple select"},
+  {w:5,t:"single",q:"What is an Azure virtual network (VNet)?",a:["A logically isolated network in Azure","A physical cable between every user","A billing report","A SaaS license"],c:[0],why:"A VNet is a logically isolated networking environment for Azure resources, with address spaces, subnets, routing, and security controls.",s:"Networking"},
+  {w:5,t:"single",q:"What does a subnet do inside a VNet?",a:["Divides the VNet address space into network segments","Creates a new Azure tenant","Guarantees zero cost","Replaces every firewall"],c:[0],why:"Subnets segment a VNet address space so resources can be organized and traffic can be controlled. A subnet is not an identity or billing boundary.",s:"Networking"},
+  {w:5,t:"tf",q:"Containers generally share the host operating-system kernel and are often lighter than virtual machines.",a:["True","False"],c:[0],why:"True. Containers package applications and dependencies while sharing the host kernel; VMs include a full guest operating system.",s:"Containers"},
+  {w:5,t:"single",q:"Which Azure service presents managed file shares accessible through common file-sharing protocols?",a:["Azure Files","Azure Functions","Azure Policy","Microsoft Entra ID"],c:[0],why:"Azure Files provides managed cloud file shares. Access still must be secured through identity, keys, permissions, and network controls as appropriate.",s:"Lab connection"},
+  {w:5,t:"single",q:"A company wants employees to securely access the same cloud file share from several systems. What is the core requirement?",a:["Use Azure Files with appropriate authentication and permissions","Make the share anonymous","Disable access control","Store credentials in public code"],c:[0],why:"Secure sharing requires a suitable storage service plus deliberate authentication, authorization, and network configuration. Anonymous access and exposed secrets are unsafe.",s:"Security"},
+  {w:5,t:"flash",q:"Flash card: When would you favor a container over a VM?",a:["Reveal"],c:[0],why:"Favor a container when you want lightweight, portable application packaging and fast deployment without needing a full guest operating system for each instance.",s:"Flash card"},
+  {w:6,t:"single",q:"A department wants an email warning before cloud spending exceeds its plan. Which control should it configure?",a:["Budget with alert thresholds","Availability Zone","Resource group deletion","VM image"],c:[0],why:"Azure Cost Management budgets and alerts track spending or usage against thresholds. An alert informs stakeholders; it does not automatically stop every resource.",s:"Cost guardrail"},
+  {w:6,t:"tf",q:"An Azure budget alert automatically shuts down all resources when the threshold is reached.",a:["True","False"],c:[1],why:"False. A budget alert notifies configured recipients or triggers an action group when integrated, but a budget itself does not automatically stop resources.",s:"Cost guardrail"},
+  {w:6,t:"single",q:"Which action best reduces the risk of an unexpected lab bill?",a:["Set budgets and alerts, follow lab shutdown instructions, and remove unused resources","Ignore consumption until the invoice arrives","Share account credentials","Deploy the largest VM available"],c:[0],why:"Cost control combines visibility, alerts, disciplined shutdown, and cleanup. Oversizing and ignoring usage increase financial risk; sharing credentials increases security risk.",s:"Scenario"},
+  {w:6,t:"multi",q:"Select all effective cost-management practices for an Azure learning lab.",a:["Choose appropriately sized resources","Stop or delete unused resources","Use tags to attribute costs","Configure budgets and alerts","Assume every service is free"],c:[0,1,2,3],why:"Right-sizing, cleanup, tagging, budgets, and alerts support cost control. Azure pricing varies, so assuming every service is free is unsafe.",s:"Multiple select"},
+  {w:6,t:"single",q:"A workload needs full OS control and custom software. Which combination is most appropriate?",a:["IaaS with Azure virtual machines","SaaS with no administration","Resource tags only","Availability Zones without compute"],c:[0],why:"IaaS VMs fit workloads needing guest OS control and custom software. They also require the customer to manage and secure the OS and applications.",s:"Cumulative"},
+  {w:6,t:"single",q:"A company needs a resilient application across separate physical locations in the same region. What should it use?",a:["Availability Zones","One resource tag","A single VM with no backup","Only a management group"],c:[0],why:"Deploying redundant components across Availability Zones protects against a zone-level physical failure within the region.",s:"Cumulative"},
+  {w:6,t:"single",q:"Which pairing is correct?",a:["Tag—metadata; Lock—protection against accidental change or deletion","Tag—encryption; Lock—automatic scaling","Tag—identity provider; Lock—billing account","Tag—datacenter; Lock—network protocol"],c:[0],why:"Tags categorize resources using metadata. Locks add a management-layer safeguard against accidental modification or deletion.",s:"Cumulative"},
+  {w:6,t:"single",q:"A user can view resources but cannot modify them. Which RBAC concept explains this?",a:["A role assignment grants permitted actions at a scope","The region blocks all writes globally","A tag changes the user's password","A budget replaces authorization"],c:[0],why:"RBAC permissions come from a role assignment combining a security principal, role definition, and scope. A read-only role permits viewing without modification.",s:"Cumulative"},
+  {w:6,t:"multi",q:"Which statements correctly compare cloud service models?",a:["IaaS gives customers more infrastructure control than PaaS","PaaS reduces operating-system management","SaaS delivers a complete managed application","Customer responsibility is zero in SaaS"],c:[0,1,2],why:"IaaS offers more control; PaaS abstracts OS management; SaaS supplies the application. Customers always retain responsibility for their data, identities, and access choices.",s:"Multiple select"},
+  {w:6,t:"flash",q:"Final flash card: What four questions should guide an Azure service choice?",a:["Reveal"],c:[0],why:"Ask: What control is required? What administration can the provider handle? How must the workload scale and recover? What security, governance, and cost boundaries apply?",s:"Flash card"}
+  ];
+
+  let order=[],index=0,score=0,answered=[],selected=new Set(),skipped=new Set(),sound=true,practice=true;
+  const $=id=>document.getElementById(id);
+  const letters="ABCDE";
+  function beep(ok){if(!sound)return;try{const ac=new(window.AudioContext||window.webkitAudioContext)(),o=ac.createOscillator(),g=ac.createGain();o.frequency.value=ok?660:220;g.gain.value=.035;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.11)}catch(e){}}
+  function shuffled(arr){return [...arr].sort(()=>Math.random()-.5)}
+  function startGame(){
+    order=[...Array(Q.length).keys()];if($("shuffle").checked)order=shuffled(order);
+    practice=$("practice").checked;index=0;score=0;answered=Array(Q.length).fill(null);selected.clear();skipped.clear();
+    $("start").style.display="none";$("results").style.display="none";$("game").style.display="block";$("score").textContent="0";
+    buildNav();render();window.scrollTo({top:0,behavior:"smooth"});
+  }
+  function buildNav(){$("navgrid").innerHTML=order.map((_,i)=>`<button class="qdot" aria-label="Go to question ${i+1}" data-i="${i}">${i+1}</button>`).join("");$("navgrid").onclick=e=>{const b=e.target.closest("button");if(b){index=+b.dataset.i;render()}}}
+  function labelType(t){return t==="multi"?"Multiple select":t==="tf"?"True / False":t==="flash"?"Flash card":"Multiple choice"}
+  function render(){
+    const q=Q[order[index]],done=answered[index];
+    $("weekTag").textContent=`Week ${q.w} · ${q.s}`;$("typeTag").textContent=labelType(q.t);$("questionText").textContent=q.q;
+    $("scenario").style.display=q.t==="flash"?"none":"block";$("scenario").textContent=q.t==="multi"?"Select every correct answer, then lock your answer.":"Choose the best answer, then lock your answer.";
+    $("feedback").className="feedback";$("feedback").innerHTML="";selected=new Set();
+    $("submitBtn").hidden=q.t==="flash"||done!==null;$("skipBtn").hidden=done!==null;$("nextBtn").hidden=done===null;
+    if(q.t==="flash"){
+      $("answerArea").innerHTML=`<div class="flash" id="flash" tabindex="0" role="button" aria-label="Flash card. Press Enter to reveal answer."><div class="flash-inner"><div class="face"><strong>${q.q.replace("Flash card: ","")}</strong><small>Click or press Enter to reveal</small></div><div class="face back"><div><strong>Answer</strong><p>${q.why}</p></div></div></div></div><div class="flash-actions"><button class="secondary" id="missedFlash">Review again</button><button class="primary" id="knewFlash">I knew it +1</button></div>`;
+      const flip=()=> $("flash").classList.toggle("flipped");$("flash").onclick=flip;$("flash").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip()}};
+      $("knewFlash").onclick=()=>gradeFlash(true);$("missedFlash").onclick=()=>gradeFlash(false);
+      if(done!==null){document.querySelector(".flash-actions").style.display="none";showFeedback(done,q)}
+    }else{
+      $("answerArea").innerHTML=`<div class="answers" role="${q.t==="multi"?"group":"radiogroup"}" aria-label="Answer choices">${q.a.map((x,i)=>`<button class="answer" data-a="${i}" aria-pressed="false"><span class="letter">${letters[i]}</span><span>${x}</span></button>`).join("")}</div>`;
+      document.querySelectorAll(".answer").forEach(b=>b.onclick=()=>selectAnswer(b,q));
+      if(done!==null){reveal(done,q)}
+    }
+    updateStatus();$("questionCard").focus();
+  }
+  function selectAnswer(b,q){const n=+b.dataset.a;if(q.t==="multi"){selected.has(n)?selected.delete(n):selected.add(n)}else{selected.clear();selected.add(n)}document.querySelectorAll(".answer").forEach(x=>{const on=selected.has(+x.dataset.a);x.classList.toggle("selected",on);x.setAttribute("aria-pressed",on)})}
+  function submit(){
+    const q=Q[order[index]];if(!selected.size){$("announcer").textContent="Select an answer before locking it.";return}
+    const pick=[...selected].sort(),correct=[...q.c].sort(),ok=pick.length===correct.length&&pick.every((v,i)=>v===correct[i]);
+    if(practice&&!ok){beep(false);$("feedback").className="feedback bad";$("feedback").innerHTML=`<b>Not yet—try again.</b>${wrongDetail(q,pick)} Review the choices and make another attempt.`;$("announcer").textContent="Not yet. Review the feedback and try again.";return}
+    answered[index]={ok,pick};skipped.delete(index);if(ok)score++;beep(ok);reveal(answered[index],q);updateStatus();
+  }
+  function wrongDetail(q,pick){if(!pick.length)return "No answer was selected.";const bad=pick.filter(x=>!q.c.includes(x)).map(x=>q.a[x]);return bad.length?`Your selection “${bad.join(", ")}” does not satisfy the scenario.`:"The response is incomplete."}
+  function reveal(result,q){
+    document.querySelectorAll(".answer").forEach(b=>{const n=+b.dataset.a;b.disabled=true;if(q.c.includes(n))b.classList.add("correct");else if(result.pick.includes(n))b.classList.add("incorrect")});
+    showFeedback(result,q);$("submitBtn").hidden=true;$("skipBtn").hidden=true;$("nextBtn").hidden=false;
+  }
+  function showFeedback(result,q){const f=$("feedback");f.className=`feedback ${result.ok?"good":"bad"}`;f.innerHTML=`<b>${result.ok?"GOAL! Correct.":"Saved by the keeper."}</b>${result.ok?"":wrongDetail(q,result.pick||[])} ${q.why}`;$("announcer").textContent=result.ok?"Correct. One point earned.":"Incorrect. Explanation displayed."}
+  function gradeFlash(ok){if(answered[index]!==null)return;answered[index]={ok,pick:[0]};skipped.delete(index);if(ok)score++;beep(ok);showFeedback(answered[index],Q[order[index]]);document.querySelector(".flash-actions").style.display="none";$("nextBtn").hidden=false;$("skipBtn").hidden=true;updateStatus()}
+  function skip(){skipped.add(index);$("announcer").textContent=`Question ${index+1} skipped. Return to it from the numbered navigator.`;advance()}
+  function advance(){
+    if(answered.filter(Boolean).length===Q.length){finish();return}
+    for(let step=1;step<=Q.length;step++){const candidate=(index+step)%Q.length;if(answered[candidate]===null){index=candidate;render();return}}
+  }
+  function next(){advance()}
+  function updateStatus(){
+    const complete=answered.filter(Boolean).length,pct=complete/Q.length*100;$("score").textContent=score;$("progress").style.width=pct+"%";
+    document.querySelector(".progress-shell").setAttribute("aria-valuenow",complete);$("progressText").textContent=`Question ${index+1} of ${Q.length} · ${complete} completed`;$("player").style.left=`calc(${Math.min(86,pct*.82+6)}% - 15px)`;
+    document.querySelectorAll(".qdot").forEach((b,i)=>{b.className="qdot"+(i===index?" current":"")+(answered[i]?.ok?" correct":answered[i]?" wrong":skipped.has(i)?" skipped":"")})
+  }
+  function finish(){
+    $("game").style.display="none";$("results").style.display="block";$("finalScore").textContent=score;
+    const pct=score/60*100;$("medal").textContent=pct>=90?"🏆":pct>=75?"🥇":pct>=60?"🥈":"🥉";
+    $("resultMessage").textContent=pct>=90?"World champion performance—strong certification readiness across the six-week scope.":pct>=75?"Excellent run. Review the missed challenges, then retake for the trophy.":pct>=60?"Solid foundation. Use the explanations below to target your next practice round.":"Training round complete. Review each missed concept and retake the quest.";
+    const best=Math.max(score,+(localStorage.getItem("az900best")||0));localStorage.setItem("az900best",best);$("bestScore").textContent=best;
+    $("certificateText").textContent=`Score: ${score}/60 (${Math.round(pct)}%). Best score on this device: ${best}/60.`;$("stamp").textContent=new Date().toLocaleString();
+    $("breakdown").innerHTML=[1,2,3,4,5,6].map(w=>{const inds=order.map((x,i)=>Q[x].w===w?i:-1).filter(i=>i>=0),got=inds.filter(i=>answered[i]?.ok).length;return `<div class="break"><b>Week ${w}</b>${got}/${inds.length}</div>`}).join("");
+    const misses=order.map((qi,i)=>({q:Q[qi],r:answered[i]})).filter(x=>!x.r?.ok);
+    $("reviewList").innerHTML=misses.length?`<h3>Post-match review (${misses.length})</h3>`+misses.map((x,i)=>`<details class="review-item"><summary>${i+1}. ${x.q.q}</summary><p>${x.q.why}</p></details>`).join(""):`<h3>Perfect match—no missed questions.</h3>`;
+    window.scrollTo({top:0,behavior:"smooth"});$("results").focus();
+  }
+  $("startBtn").onclick=startGame;$("submitBtn").onclick=submit;$("skipBtn").onclick=skip;$("nextBtn").onclick=next;$("retakeBtn").onclick=()=>{window.scrollTo(0,0);$("results").style.display="none";$("start").style.display="block"};
+  $("contrastBtn").onclick=e=>{document.documentElement.classList.toggle("high-contrast");const on=document.documentElement.classList.contains("high-contrast");e.currentTarget.setAttribute("aria-pressed",on)};
+  $("textBtn").onclick=e=>{document.documentElement.classList.toggle("large-text");const on=document.documentElement.classList.contains("large-text");e.currentTarget.setAttribute("aria-pressed",on)};
+  $("soundBtn").onclick=e=>{sound=!sound;e.currentTarget.setAttribute("aria-pressed",sound);e.currentTarget.textContent=sound?"🔊 Sound":"🔇 Sound"};
+  $("bestScore").textContent=localStorage.getItem("az900best")||0;
+  document.addEventListener("keydown",e=>{if($("game").style.display==="block"&&e.altKey&&e.key==="ArrowRight"&&!$("nextBtn").hidden)next()});
+  </script>
+</body>
+</html>
