@@ -41,6 +41,7 @@
       <button class="iconbtn" id="contrastBtn" aria-pressed="false">◐ Contrast</button>
       <button class="iconbtn" id="textBtn" aria-pressed="false">A+ Text</button>
       <button class="iconbtn" id="soundBtn" aria-pressed="true">🔊 Sound</button>
+      <button class="iconbtn" id="ambienceBtn" aria-pressed="false">🏟️ Stadium</button>
     </div>
   </header>
   <main id="main" class="shell">
@@ -169,12 +170,34 @@
   {w:6,t:"flash",q:"Final flash card: What four questions should guide an Azure service choice?",a:["Reveal"],c:[0],why:"Ask: What control is required? What administration can the provider handle? How must the workload scale and recover? What security, governance, and cost boundaries apply?",s:"Flash card"}
   ];
 
-  let order=[],index=0,score=0,answered=[],selected=new Set(),skipped=new Set(),sound=true,practice=true;
+  let order=[],index=0,score=0,answered=[],selected=new Set(),skipped=new Set(),sound=true,ambience=false,practice=true,audioCtx=null,ambienceNodes=[];
   const $=id=>document.getElementById(id);
   const letters="ABCDE";
-  function beep(ok){if(!sound)return;try{const ac=new(window.AudioContext||window.webkitAudioContext)(),o=ac.createOscillator(),g=ac.createGain();o.frequency.value=ok?660:220;g.gain.value=.035;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.11)}catch(e){}}
+  function getAudio(){
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==="suspended")audioCtx.resume();
+    return audioCtx;
+  }
+  function tone(freq,delay=.0,duration=.16,type="sine",volume=.13){
+    if(!sound)return;try{const ac=getAudio(),o=ac.createOscillator(),g=ac.createGain(),start=ac.currentTime+delay;o.type=type;o.frequency.setValueAtTime(freq,start);g.gain.setValueAtTime(.001,start);g.gain.exponentialRampToValueAtTime(volume,start+.018);g.gain.exponentialRampToValueAtTime(.001,start+duration);o.connect(g);g.connect(ac.destination);o.start(start);o.stop(start+duration+.03)}catch(e){}
+  }
+  function crowdBurst(delay=.05,duration=.55,volume=.055){
+    if(!sound)return;try{const ac=getAudio(),length=Math.floor(ac.sampleRate*duration),buffer=ac.createBuffer(1,length,ac.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<length;i++)data[i]=(Math.random()*2-1)*(1-i/length);const src=ac.createBufferSource(),filter=ac.createBiquadFilter(),gain=ac.createGain(),start=ac.currentTime+delay;filter.type="bandpass";filter.frequency.value=900;filter.Q.value=.7;gain.gain.setValueAtTime(.001,start);gain.gain.linearRampToValueAtTime(volume,start+.08);gain.gain.exponentialRampToValueAtTime(.001,start+duration);src.buffer=buffer;src.connect(filter);filter.connect(gain);gain.connect(ac.destination);src.start(start)}catch(e){}
+  }
+  function beep(ok){
+    if(ok){tone(523,0,.14,"triangle",.16);tone(659,.11,.15,"triangle",.16);tone(784,.22,.25,"triangle",.17);crowdBurst(.12,.65,.06)}
+    else{tone(196,0,.28,"sawtooth",.10);tone(147,.16,.34,"sawtooth",.09)}
+  }
+  function fanfare(){
+    [523,659,784,1047].forEach((f,i)=>tone(f,i*.14,i===3?.6:.22,"triangle",.16));tone(523,.48,.58,"sine",.08);crowdBurst(.28,1.2,.08)
+  }
+  function startAmbience(){
+    if(!sound||!ambience||ambienceNodes.length)return;try{const ac=getAudio(),length=ac.sampleRate*2,buffer=ac.createBuffer(1,length,ac.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<length;i++)data[i]=Math.random()*2-1;const src=ac.createBufferSource(),filter=ac.createBiquadFilter(),gain=ac.createGain();src.buffer=buffer;src.loop=true;filter.type="lowpass";filter.frequency.value=430;gain.gain.value=.012;src.connect(filter);filter.connect(gain);gain.connect(ac.destination);src.start();ambienceNodes=[src,gain]}catch(e){}
+  }
+  function stopAmbience(){ambienceNodes.forEach(n=>{try{n.stop?.()}catch(e){}try{n.disconnect?.()}catch(e){}});ambienceNodes=[]}
   function shuffled(arr){return [...arr].sort(()=>Math.random()-.5)}
   function startGame(){
+    if(sound)getAudio();if(ambience)startAmbience();
     order=[...Array(Q.length).keys()];if($("shuffle").checked)order=shuffled(order);
     practice=$("practice").checked;index=0;score=0;answered=Array(Q.length).fill(null);selected.clear();skipped.clear();
     $("start").style.display="none";$("results").style.display="none";$("game").style.display="block";$("score").textContent="0";
@@ -226,6 +249,7 @@
     document.querySelectorAll(".qdot").forEach((b,i)=>{b.className="qdot"+(i===index?" current":"")+(answered[i]?.ok?" correct":answered[i]?" wrong":skipped.has(i)?" skipped":"")})
   }
   function finish(){
+    stopAmbience();fanfare();
     $("game").style.display="none";$("results").style.display="block";$("finalScore").textContent=score;
     const pct=score/60*100;$("medal").textContent=pct>=90?"🏆":pct>=75?"🥇":pct>=60?"🥈":"🥉";
     $("resultMessage").textContent=pct>=90?"World champion performance—strong certification readiness across the six-week scope.":pct>=75?"Excellent run. Review the missed challenges, then retake for the trophy.":pct>=60?"Solid foundation. Use the explanations below to target your next practice round.":"Training round complete. Review each missed concept and retake the quest.";
@@ -239,7 +263,8 @@
   $("startBtn").onclick=startGame;$("submitBtn").onclick=submit;$("skipBtn").onclick=skip;$("nextBtn").onclick=next;$("retakeBtn").onclick=()=>{window.scrollTo(0,0);$("results").style.display="none";$("start").style.display="block"};
   $("contrastBtn").onclick=e=>{document.documentElement.classList.toggle("high-contrast");const on=document.documentElement.classList.contains("high-contrast");e.currentTarget.setAttribute("aria-pressed",on)};
   $("textBtn").onclick=e=>{document.documentElement.classList.toggle("large-text");const on=document.documentElement.classList.contains("large-text");e.currentTarget.setAttribute("aria-pressed",on)};
-  $("soundBtn").onclick=e=>{sound=!sound;e.currentTarget.setAttribute("aria-pressed",sound);e.currentTarget.textContent=sound?"🔊 Sound":"🔇 Sound"};
+  $("soundBtn").onclick=e=>{sound=!sound;if(sound){getAudio();tone(660,0,.12,"triangle",.12);if(ambience)startAmbience()}else stopAmbience();e.currentTarget.setAttribute("aria-pressed",sound);e.currentTarget.textContent=sound?"🔊 Sound":"🔇 Sound";$("announcer").textContent=sound?"Sound effects enabled.":"All sound muted."};
+  $("ambienceBtn").onclick=e=>{ambience=!ambience;if(ambience){sound=true;$("soundBtn").setAttribute("aria-pressed","true");$("soundBtn").textContent="🔊 Sound";getAudio();startAmbience()}else stopAmbience();e.currentTarget.setAttribute("aria-pressed",ambience);e.currentTarget.textContent=ambience?"🏟️ Stadium On":"🏟️ Stadium";$("announcer").textContent=ambience?"Low-volume stadium ambience enabled.":"Stadium ambience disabled."};
   $("bestScore").textContent=localStorage.getItem("az900best")||0;
   document.addEventListener("keydown",e=>{if($("game").style.display==="block"&&e.altKey&&e.key==="ArrowRight"&&!$("nextBtn").hidden)next()});
   </script>
