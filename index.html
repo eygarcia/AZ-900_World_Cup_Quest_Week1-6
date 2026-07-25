@@ -28,6 +28,8 @@
     .answers{display:grid;gap:.7rem}.answer{width:100%;text-align:left;border:2px solid #d7e4ee;background:#fff;color:var(--ink);border-radius:13px;padding:1rem;display:flex;gap:.8rem;align-items:flex-start;line-height:1.4}.answer:hover,.answer:focus-visible{border-color:var(--blue);background:#f1f9ff;outline:3px solid rgba(0,120,212,.18)}.answer.selected{border-color:#0067b8;background:#e1f2ff}.answer.correct{border-color:#138658;background:#e4f8ef}.answer.incorrect{border-color:#b92d2d;background:#fff0f0}.letter{flex:0 0 1.8rem;height:1.8rem;border-radius:50%;display:grid;place-items:center;background:#e8f1f7;font-weight:900}
     .feedback{display:none;margin-top:1rem;padding:1rem 1.1rem;border-radius:13px;line-height:1.55}.feedback.good{display:block;background:#e4f8ef;border-left:5px solid #138658}.feedback.bad{display:block;background:#fff0f0;border-left:5px solid #bd3030}.feedback b{display:block;margin-bottom:.25rem}.controls{display:flex;justify-content:space-between;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem}.flash{perspective:1000px;min-height:275px}.flash-inner{position:relative;min-height:275px;transition:transform .65s;transform-style:preserve-3d}.flash.flipped .flash-inner{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:grid;place-items:center;text-align:center;padding:2rem;border:2px solid #cfe4f1;background:linear-gradient(145deg,#fff,#eaf7ff)}.back{transform:rotateY(180deg);background:linear-gradient(145deg,#e7f8f0,#fff)}.face strong{font-size:1.5rem}.flash-actions{display:flex;justify-content:center;gap:.7rem;margin-top:1rem}
     .results{display:none;padding:clamp(1.2rem,5vw,3rem);text-align:center}.results h2{font-size:clamp(2rem,5vw,3.6rem);margin:.4rem}.final-score{font-size:4rem;font-weight:950;color:#0067b8}.medal{font-size:6rem}.breakdown{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;margin:1.5rem 0}.break{background:#edf6fb;border-radius:12px;padding:.8rem}.break b{display:block;color:#0067b8}.review-list{text-align:left;display:grid;gap:.7rem;margin:1.4rem auto;max-width:820px}.review-item{border:1px solid var(--line);border-radius:12px;padding:.9rem;background:#fff}.review-item summary{cursor:pointer;font-weight:800}.review-item p{color:var(--muted);line-height:1.5}.certificate{border:2px dashed #92b6cf;padding:1rem;border-radius:14px;background:#f8fcff;margin:1rem auto;max-width:700px}.source-note{font-size:.8rem;color:var(--muted);line-height:1.5;margin-top:1.2rem}
+    .milestone-backdrop{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:1rem;background:rgba(1,12,29,.88);backdrop-filter:blur(8px)}.milestone-backdrop.show{display:grid}.milestone-card{position:relative;width:min(720px,96vw);max-height:92vh;overflow:auto;color:#fff;text-align:center;border:2px solid rgba(255,203,69,.65);border-radius:28px;padding:clamp(1.25rem,5vw,2.8rem);background:radial-gradient(circle at 50% -10%,#2276b8 0,transparent 45%),linear-gradient(145deg,#0b2d58,#04152d);box-shadow:0 24px 80px rgba(0,0,0,.55);animation:milestoneIn .5s cubic-bezier(.2,.9,.25,1.2)}.milestone-rays{position:absolute;inset:-40%;pointer-events:none;background:repeating-conic-gradient(from 0deg,rgba(255,203,69,.09) 0 8deg,transparent 8deg 18deg);animation:spin 24s linear infinite}.milestone-content{position:relative}.milestone-icon{font-size:clamp(4rem,12vw,7rem);filter:drop-shadow(0 12px 12px rgba(0,0,0,.3));animation:float 2.2s ease-in-out infinite}.milestone-kicker{color:var(--cyan);font-weight:900;text-transform:uppercase;letter-spacing:.16em;font-size:.8rem}.milestone-card h2{margin:.35rem 0;color:var(--gold);font-size:clamp(2rem,6vw,3.5rem);line-height:1}.milestone-card h3{margin:.5rem 0 1rem;font-size:clamp(1.25rem,3vw,1.7rem)}.milestone-message{font-size:clamp(1rem,2.2vw,1.14rem);line-height:1.65;color:#e8f4ff}.fun-fact{margin:1.25rem 0;padding:1rem;text-align:left;border-radius:16px;background:rgba(66,212,244,.12);border:1px solid rgba(66,212,244,.38);line-height:1.55}.fun-fact strong{display:block;color:var(--cyan);margin-bottom:.25rem}.milestone-track{display:flex;justify-content:center;gap:.45rem;margin:1.2rem 0}.milestone-track span{width:2.2rem;height:.55rem;border-radius:99px;background:rgba(255,255,255,.2)}.milestone-track span.on{background:var(--gold);box-shadow:0 0 12px rgba(255,203,69,.7)}@keyframes milestoneIn{from{opacity:0;transform:scale(.82) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .intro-toast{position:fixed;z-index:70;left:50%;bottom:1rem;transform:translateX(-50%) translateY(140%);width:min(620px,94vw);display:flex;align-items:center;gap:1rem;padding:1rem 1.1rem;border:2px solid var(--gold);border-radius:18px;background:rgba(4,22,45,.97);color:#fff;box-shadow:0 18px 50px rgba(0,0,0,.45);transition:transform .35s ease}.intro-toast.show{transform:translateX(-50%) translateY(0)}.intro-pulse{font-size:2rem;animation:pulse .72s ease-in-out infinite alternate}.intro-copy{flex:1}.intro-copy strong{display:block;color:var(--gold);font-size:1.05rem}.intro-copy span{display:block;color:#d8ebff;margin-top:.15rem}.intro-meter{height:5px;margin-top:.55rem;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}.intro-meter span{display:block;height:100%;width:100%;transform-origin:left;background:var(--cyan)}.intro-toast.show .intro-meter span{animation:introCountdown 10s linear forwards}@keyframes introCountdown{to{transform:scaleX(0)}}@keyframes pulse{to{transform:scale(1.14)}}@media(prefers-reduced-motion:reduce){.intro-toast{transition:none}.intro-pulse,.intro-toast.show .intro-meter span{animation:none}}
     .high-contrast{--paper:#fff;--ink:#000;--muted:#222;--line:#111}.high-contrast body{background:#000}.large-text{font-size:19px}
     @media(max-width:850px){.hero{grid-template-columns:1fr}.trophy-wrap{display:none}.stadium{grid-template-columns:1fr}.sidebar{position:static}.navgrid{grid-template-columns:repeat(10,1fr)}.meta-grid{grid-template-columns:repeat(2,1fr)}.week-grid{grid-template-columns:repeat(2,1fr)}.breakdown{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.shell{width:96vw}.topbar{align-items:flex-start}.brand span:last-child{display:none}.week-grid{grid-template-columns:1fr}.question-card{border-radius:16px}.navgrid{grid-template-columns:repeat(10,1fr)}.answer{padding:.8rem}.hero h1{font-size:2.55rem}}
     @media print{body{background:#fff;color:#000}.topbar,.hero,.sidebar,.controls,.flash-actions,.source-note{display:none!important}.panel{box-shadow:none}.results{display:block!important}.shell{width:100%;padding:0}.certificate{border:3px double #222}}
@@ -42,6 +44,7 @@
       <button class="iconbtn" id="textBtn" aria-pressed="false">A+ Text</button>
       <button class="iconbtn" id="soundBtn" aria-pressed="true">🔊 Sound</button>
       <button class="iconbtn" id="ambienceBtn" aria-pressed="false">🏟️ Stadium</button>
+      <button class="iconbtn" id="introBtn">🎵 Replay Intro</button>
     </div>
   </header>
   <main id="main" class="shell">
@@ -105,6 +108,26 @@
       <div class="review-list" id="reviewList"></div>
     </section>
   </main>
+  <div class="milestone-backdrop" id="milestone" role="dialog" aria-modal="true" aria-labelledby="milestoneTitle" aria-describedby="milestoneMessage" hidden>
+    <div class="milestone-card">
+      <div class="milestone-rays" aria-hidden="true"></div>
+      <div class="milestone-content">
+        <div class="milestone-icon" id="milestoneIcon" aria-hidden="true">⚽</div>
+        <div class="milestone-kicker">Fall 2026 · World Cup Checkpoint</div>
+        <h2 id="milestoneScore">10 Points</h2>
+        <h3 id="milestoneTitle">Opening Goal!</h3>
+        <p class="milestone-message" id="milestoneMessage"></p>
+        <div class="fun-fact"><strong>🌍 World Cup Fun Fact</strong><span id="milestoneFact"></span></div>
+        <div class="milestone-track" id="milestoneTrack" aria-label="Milestone progress"></div>
+        <button class="primary" id="milestoneContinue">Continue the quest</button>
+      </div>
+    </div>
+  </div>
+  <div class="intro-toast" id="introToast" role="status" aria-live="polite">
+    <div class="intro-pulse" aria-hidden="true">🥁</div>
+    <div class="intro-copy"><strong>Teams entering the stadium!</strong><span>AZ-900—let’s go! Cloud champions, take the field!</span><div class="intro-meter" aria-hidden="true"><span></span></div></div>
+    <button class="secondary" id="skipIntroBtn">Skip intro</button>
+  </div>
   <div class="sr-only" id="announcer" aria-live="assertive"></div>
   <script>
   const Q=[
@@ -170,7 +193,15 @@
   {w:6,t:"flash",q:"Final flash card: What four questions should guide an Azure service choice?",a:["Reveal"],c:[0],why:"Ask: What control is required? What administration can the provider handle? How must the workload scale and recover? What security, governance, and cost boundaries apply?",s:"Flash card"}
   ];
 
-  let order=[],index=0,score=0,answered=[],selected=new Set(),skipped=new Set(),sound=true,ambience=false,practice=true,audioCtx=null,ambienceNodes=[];
+  const MILESTONES={
+    10:{icon:"⚽",title:"Opening Goal!",message:"Congratulations on completing your first 10 challenges—you have scored the opening goal! Welcome to the Fall 2026 World Cup Certification Quest. Of the 60 point challenges, you have conquered the first 10. Keep up the excellent work and continue your quest toward AZ-900 certification readiness.",fact:"The first FIFA World Cup was held in Uruguay in 1930. Thirteen teams participated, and host nation Uruguay became the inaugural champion."},
+    20:{icon:"☀️",title:"Round Two: Rising Heat",message:"Here we are in round two, under the sweltering heat. You have been quite the adversary. The defense is getting tougher, but your offense is getting even stronger. The teams are evenly matched, and your persistence is admirable. Keep pressing forward!",fact:"The original World Cup trophy was called the Jules Rimet Trophy. It was stolen in England in 1966 and famously discovered by a dog named Pickles."},
+    30:{icon:"📣",title:"Halftime Approaches",message:"We are preparing to enter halftime, and the fans are loving your skills. Your preparation, effort, and passion for the game are on full display. The stadium is rocking with chants of “USA! USA!” You have reached the halfway mark—you've got this. Keep going!",fact:"The 1999 FIFA Women's World Cup final drew 90,185 fans to the Rose Bowl in Pasadena, where the United States defeated China in a penalty shootout."},
+    40:{icon:"🔥",title:"Evolving Under Pressure",message:"Fatigue is settling in, but the fans are energized by your performance. Your skills and confidence continue to improve. The defense keeps evolving—and your offense is evolving with it. Stay focused and keep up the fantastic work!",fact:"The modern FIFA World Cup Trophy was first awarded in 1974. The winning team lifts the original trophy, then receives a gold-plated winners' trophy to keep."},
+    50:{icon:"🥅",title:"Another Spectacular Goal!",message:"You have scored again! The fans are witnessing an unprecedented performance in this World Cup Quest. Your teammates are impressed by your effort, resilience, and growing Azure skills. Everyone in the stadium senses that one more goal is coming.",fact:"The first FIFA Women's World Cup was held in China in 1991. The United States won the tournament, defeating Norway in the final."},
+    60:{icon:"🏆",title:"Championship Goal!",message:"Five minutes remain, and you continue to push forward through the intense heat. Victory is within reach. Suddenly, your right wing delivers a perfect pass. You leap and connect with a brilliant header into the left corner of the goal! The stadium erupts—you have won the game. Congratulations on your first victory in this intense tournament. You are a champion today!",fact:"The 2026 men's World Cup is the first hosted by three countries—Canada, Mexico, and the United States—and the first expanded to 48 teams."}
+  };
+  let order=[],index=0,score=0,answered=[],selected=new Set(),skipped=new Set(),milestonesShown=new Set(),sound=true,ambience=false,practice=true,audioCtx=null,ambienceNodes=[],introNodes=[],introTimer=null;
   const $=id=>document.getElementById(id);
   const letters="ABCDE";
   function getAudio(){
@@ -191,6 +222,18 @@
   function fanfare(){
     [523,659,784,1047].forEach((f,i)=>tone(f,i*.14,i===3?.6:.22,"triangle",.16));tone(523,.48,.58,"sine",.08);crowdBurst(.28,1.2,.08)
   }
+  function introKick(ac,start){
+    const o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.setValueAtTime(145,start);o.frequency.exponentialRampToValueAtTime(48,start+.24);g.gain.setValueAtTime(.001,start);g.gain.exponentialRampToValueAtTime(.24,start+.012);g.gain.exponentialRampToValueAtTime(.001,start+.3);o.connect(g);g.connect(ac.destination);o.start(start);o.stop(start+.32);introNodes.push(o,g)
+  }
+  function introClap(ac,start){
+    const length=Math.floor(ac.sampleRate*.22),buffer=ac.createBuffer(1,length,ac.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<length;i++)data[i]=(Math.random()*2-1)*(1-i/length);const src=ac.createBufferSource(),filter=ac.createBiquadFilter(),g=ac.createGain();src.buffer=buffer;filter.type="highpass";filter.frequency.value=1100;g.gain.setValueAtTime(.001,start);g.gain.linearRampToValueAtTime(.13,start+.01);g.gain.exponentialRampToValueAtTime(.001,start+.2);src.connect(filter);filter.connect(g);g.connect(ac.destination);src.start(start);introNodes.push(src,filter,g)
+  }
+  function stopIntro(announce=false){
+    clearTimeout(introTimer);introTimer=null;introNodes.forEach(n=>{try{n.stop?.()}catch(e){}try{n.disconnect?.()}catch(e){}});introNodes=[];try{speechSynthesis.cancel()}catch(e){};$("introToast").classList.remove("show");if(announce)$("announcer").textContent="Stadium introduction skipped."
+  }
+  function playIntro(){
+    stopIntro();if(!sound)return;try{const ac=getAudio(),base=ac.currentTime+.08;for(let bar=0;bar<5;bar++){const t=base+bar*1.8;introKick(ac,t);introKick(ac,t+.52);introClap(ac,t+1.04);crowdBurst(bar*1.8+.22,1.15,.035)}[392,494,587,784].forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain(),t=base+6.9+i*.38;o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.055,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+.32);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.35);introNodes.push(o,g)});$("introToast").classList.add("show");$("announcer").textContent="Original ten-second stadium introduction playing. Use Skip intro to stop it.";if("speechSynthesis"in window){const chant=new SpeechSynthesisUtterance("A Z nine hundred, let's go! Cloud champions, take the field!");chant.rate=1.08;chant.pitch=.88;chant.volume=.72;setTimeout(()=>{if(sound&&$("introToast").classList.contains("show"))speechSynthesis.speak(chant)},1500)}introTimer=setTimeout(()=>stopIntro(),10000)}catch(e){}
+  }
   function startAmbience(){
     if(!sound||!ambience||ambienceNodes.length)return;try{const ac=getAudio(),length=ac.sampleRate*2,buffer=ac.createBuffer(1,length,ac.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<length;i++)data[i]=Math.random()*2-1;const src=ac.createBufferSource(),filter=ac.createBiquadFilter(),gain=ac.createGain();src.buffer=buffer;src.loop=true;filter.type="lowpass";filter.frequency.value=430;gain.gain.value=.012;src.connect(filter);filter.connect(gain);gain.connect(ac.destination);src.start();ambienceNodes=[src,gain]}catch(e){}
   }
@@ -199,9 +242,9 @@
   function startGame(){
     if(sound)getAudio();if(ambience)startAmbience();
     order=[...Array(Q.length).keys()];if($("shuffle").checked)order=shuffled(order);
-    practice=$("practice").checked;index=0;score=0;answered=Array(Q.length).fill(null);selected.clear();skipped.clear();
+    practice=$("practice").checked;index=0;score=0;answered=Array(Q.length).fill(null);selected.clear();skipped.clear();milestonesShown.clear();
     $("start").style.display="none";$("results").style.display="none";$("game").style.display="block";$("score").textContent="0";
-    buildNav();render();window.scrollTo({top:0,behavior:"smooth"});
+    buildNav();render();window.scrollTo({top:0,behavior:"smooth"});playIntro();
   }
   function buildNav(){$("navgrid").innerHTML=order.map((_,i)=>`<button class="qdot" aria-label="Go to question ${i+1}" data-i="${i}">${i+1}</button>`).join("");$("navgrid").onclick=e=>{const b=e.target.closest("button");if(b){index=+b.dataset.i;render()}}}
   function labelType(t){return t==="multi"?"Multiple select":t==="tf"?"True / False":t==="flash"?"Flash card":"Multiple choice"}
@@ -228,7 +271,7 @@
     const q=Q[order[index]];if(!selected.size){$("announcer").textContent="Select an answer before locking it.";return}
     const pick=[...selected].sort(),correct=[...q.c].sort(),ok=pick.length===correct.length&&pick.every((v,i)=>v===correct[i]);
     if(practice&&!ok){beep(false);$("feedback").className="feedback bad";$("feedback").innerHTML=`<b>Not yet—try again.</b>${wrongDetail(q,pick)} Review the choices and make another attempt.`;$("announcer").textContent="Not yet. Review the feedback and try again.";return}
-    answered[index]={ok,pick};skipped.delete(index);if(ok)score++;beep(ok);reveal(answered[index],q);updateStatus();
+    answered[index]={ok,pick};skipped.delete(index);if(ok)score++;beep(ok);reveal(answered[index],q);updateStatus();if(ok)maybeMilestone();
   }
   function wrongDetail(q,pick){if(!pick.length)return "No answer was selected.";const bad=pick.filter(x=>!q.c.includes(x)).map(x=>q.a[x]);return bad.length?`Your selection “${bad.join(", ")}” does not satisfy the scenario.`:"The response is incomplete."}
   function reveal(result,q){
@@ -236,7 +279,14 @@
     showFeedback(result,q);$("submitBtn").hidden=true;$("skipBtn").hidden=true;$("nextBtn").hidden=false;
   }
   function showFeedback(result,q){const f=$("feedback");f.className=`feedback ${result.ok?"good":"bad"}`;f.innerHTML=`<b>${result.ok?"GOAL! Correct.":"Saved by the keeper."}</b>${result.ok?"":wrongDetail(q,result.pick||[])} ${q.why}`;$("announcer").textContent=result.ok?"Correct. One point earned.":"Incorrect. Explanation displayed."}
-  function gradeFlash(ok){if(answered[index]!==null)return;answered[index]={ok,pick:[0]};skipped.delete(index);if(ok)score++;beep(ok);showFeedback(answered[index],Q[order[index]]);document.querySelector(".flash-actions").style.display="none";$("nextBtn").hidden=false;$("skipBtn").hidden=true;updateStatus()}
+  function gradeFlash(ok){if(answered[index]!==null)return;answered[index]={ok,pick:[0]};skipped.delete(index);if(ok)score++;beep(ok);showFeedback(answered[index],Q[order[index]]);document.querySelector(".flash-actions").style.display="none";$("nextBtn").hidden=false;$("skipBtn").hidden=true;updateStatus();if(ok)maybeMilestone()}
+  function maybeMilestone(){
+    const m=MILESTONES[score];if(!m||milestonesShown.has(score))return;
+    milestonesShown.add(score);$("milestoneIcon").textContent=m.icon;$("milestoneScore").textContent=`${score} Points`;$("milestoneTitle").textContent=m.title;$("milestoneMessage").textContent=m.message;$("milestoneFact").textContent=m.fact;
+    $("milestoneTrack").innerHTML=[10,20,30,40,50,60].map(n=>`<span class="${n<=score?"on":""}" title="${n} points"></span>`).join("");
+    const modal=$("milestone");modal.hidden=false;requestAnimationFrame(()=>modal.classList.add("show"));fanfare();$("announcer").textContent=`${score} point milestone. ${m.title}`;setTimeout(()=>$("milestoneContinue").focus(),50);
+  }
+  function closeMilestone(){const modal=$("milestone");modal.classList.remove("show");modal.hidden=true;$("nextBtn").focus()}
   function skip(){skipped.add(index);$("announcer").textContent=`Question ${index+1} skipped. Return to it from the numbered navigator.`;advance()}
   function advance(){
     if(answered.filter(Boolean).length===Q.length){finish();return}
@@ -261,9 +311,12 @@
     window.scrollTo({top:0,behavior:"smooth"});$("results").focus();
   }
   $("startBtn").onclick=startGame;$("submitBtn").onclick=submit;$("skipBtn").onclick=skip;$("nextBtn").onclick=next;$("retakeBtn").onclick=()=>{window.scrollTo(0,0);$("results").style.display="none";$("start").style.display="block"};
+  $("introBtn").onclick=()=>{if(!sound){sound=true;$("soundBtn").setAttribute("aria-pressed","true");$("soundBtn").textContent="🔊 Sound"}playIntro()};
+  $("skipIntroBtn").onclick=()=>stopIntro(true);
+  $("milestoneContinue").onclick=closeMilestone;
   $("contrastBtn").onclick=e=>{document.documentElement.classList.toggle("high-contrast");const on=document.documentElement.classList.contains("high-contrast");e.currentTarget.setAttribute("aria-pressed",on)};
   $("textBtn").onclick=e=>{document.documentElement.classList.toggle("large-text");const on=document.documentElement.classList.contains("large-text");e.currentTarget.setAttribute("aria-pressed",on)};
-  $("soundBtn").onclick=e=>{sound=!sound;if(sound){getAudio();tone(660,0,.12,"triangle",.12);if(ambience)startAmbience()}else stopAmbience();e.currentTarget.setAttribute("aria-pressed",sound);e.currentTarget.textContent=sound?"🔊 Sound":"🔇 Sound";$("announcer").textContent=sound?"Sound effects enabled.":"All sound muted."};
+  $("soundBtn").onclick=e=>{sound=!sound;if(sound){getAudio();tone(660,0,.12,"triangle",.12);if(ambience)startAmbience()}else{stopAmbience();stopIntro()}e.currentTarget.setAttribute("aria-pressed",sound);e.currentTarget.textContent=sound?"🔊 Sound":"🔇 Sound";$("announcer").textContent=sound?"Sound effects enabled.":"All sound muted."};
   $("ambienceBtn").onclick=e=>{ambience=!ambience;if(ambience){sound=true;$("soundBtn").setAttribute("aria-pressed","true");$("soundBtn").textContent="🔊 Sound";getAudio();startAmbience()}else stopAmbience();e.currentTarget.setAttribute("aria-pressed",ambience);e.currentTarget.textContent=ambience?"🏟️ Stadium On":"🏟️ Stadium";$("announcer").textContent=ambience?"Low-volume stadium ambience enabled.":"Stadium ambience disabled."};
   $("bestScore").textContent=localStorage.getItem("az900best")||0;
   document.addEventListener("keydown",e=>{if($("game").style.display==="block"&&e.altKey&&e.key==="ArrowRight"&&!$("nextBtn").hidden)next()});
